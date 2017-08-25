@@ -32,6 +32,7 @@ class MainActivityFragment : Fragment() {
         val lesson2 = Lesson2()
         Log.d(TAG, lesson2.compare(Lesson2.MyDate(1992, 11, 11), Lesson2.MyDate(1992, 11, 12)).toString())
         Log.d(TAG, lesson2.checkInRange(Lesson2.MyDate(1993, 11, 11), Lesson2.MyDate(1991, 12, 1), Lesson2.MyDate(1993, 1, 1)).toString())
+        Log.d(TAG, lesson2.checkInRangeOperator(Lesson2.MyDate(1993, 11, 11), Lesson2.MyDate(1991, 12, 1), Lesson2.MyDate(1993, 1, 1)).toString())
 
         return inflater!!.inflate(R.layout.fragment_main, container, false)
     }
