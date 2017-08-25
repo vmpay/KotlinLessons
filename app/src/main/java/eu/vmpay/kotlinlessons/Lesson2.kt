@@ -20,12 +20,29 @@ class Lesson2 {
     fun compare(date1: MyDate, date2: MyDate) = date1 < date2
 
     /**----2.2----**/
-    class DateRange(val start: MyDate, val endInclusive: MyDate) {
+    class DateRange(val start: MyDate, val endInclusive: MyDate) : Iterable<MyDate> {
+        override fun iterator() = object : Iterator<MyDate> {
+            private var current = start
+            override fun hasNext() = current <= endInclusive
+            override fun next() = if (hasNext()) {
+                val tmp = current
+//                current = current.nextDay()
+                tmp
+            } else throw NoSuchElementException()
+        }
+
         operator fun contains(myDate: MyDate): Boolean =
                 (start <= myDate && myDate <= endInclusive)
 
         operator fun MyDate.rangeTo(myDate: MyDate) =
                 DateRange(this, myDate)
+
+        /**----2.4----**/
+        fun iterateOverDateRange(firstDate: MyDate, secondDate: MyDate, handler: (MyDate) -> Unit) {
+            for (date in firstDate..secondDate) {
+                handler(date)
+            }
+        }
     }
 
     fun checkInRange(date: MyDate, first: MyDate, last: MyDate): Boolean {
@@ -37,3 +54,5 @@ class Lesson2 {
         return date in first..last
     }
 }
+
+
