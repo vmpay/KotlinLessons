@@ -1,4 +1,4 @@
-package eu.vmpay.kotlinlessons
+package eu.vmpay.kotlinlessons.stepik
 
 import java.util.*
 
