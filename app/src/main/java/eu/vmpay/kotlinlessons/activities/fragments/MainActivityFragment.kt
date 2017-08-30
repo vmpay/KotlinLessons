@@ -1,7 +1,7 @@
 package eu.vmpay.kotlinlessons.activities.fragments
 
-import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -9,12 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import eu.vmpay.kotlinlessons.adapters.ForecastListAdapter
 import eu.vmpay.kotlinlessons.R
+import eu.vmpay.kotlinlessons.adapters.ForecastListAdapter
+import eu.vmpay.kotlinlessons.domain.commands.RequestForecastCommand
 import eu.vmpay.kotlinlessons.stepik.Lesson1
 import eu.vmpay.kotlinlessons.stepik.Lesson2
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
-import kotlin.collections.ArrayList
+import org.jetbrains.anko.uiThread
 
 /**
  * A placeholder fragment containing a simple view.
@@ -51,7 +53,13 @@ class MainActivityFragment : Fragment() {
 //        val forecastList = rootView.find<RecyclerView>(R.id.forecast_list)
         val forecastList: RecyclerView = rootView.find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(activity)
-        forecastList.adapter = ForecastListAdapter(items)
+//        forecastList.adapter = ForecastListAdapter(items)
+        doAsync {
+            val result = RequestForecastCommand("94043").execute()
+            uiThread {
+                forecastList.adapter = ForecastListAdapter(result)
+            }
+        }
         return rootView
     }
 
