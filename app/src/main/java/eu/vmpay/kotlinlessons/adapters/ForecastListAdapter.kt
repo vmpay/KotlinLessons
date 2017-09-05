@@ -35,7 +35,7 @@ class ForecastListAdapter(val weekForecast: ForecastList,
 
     override fun getItemCount(): Int = weekForecast.size
 
-    class ViewHolder(view: View, val itemClick: (Forecast) -> Unit)
+    class ViewHolder(view: View, private val itemClick: (Forecast) -> Unit)
         : RecyclerView.ViewHolder(view) {
 
         private val iconView = view.find<ImageView>(R.id.icon)
