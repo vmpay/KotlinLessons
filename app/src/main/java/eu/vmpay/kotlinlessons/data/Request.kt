@@ -1,4 +1,4 @@
-package eu.vmpay.kotlinlessons.rest
+package eu.vmpay.kotlinlessons.data
 
 import android.util.Log
 import java.net.URL

@@ -1,7 +1,7 @@
 package eu.vmpay.kotlinlessons.domain.mapper
 
+import eu.vmpay.kotlinlessons.data.ForecastResponse
 import eu.vmpay.kotlinlessons.domain.model.ForecastList
-import eu.vmpay.kotlinlessons.rest.ForecastResponse
 import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit

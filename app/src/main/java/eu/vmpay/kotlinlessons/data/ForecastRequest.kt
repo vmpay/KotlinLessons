@@ -1,4 +1,4 @@
-package eu.vmpay.kotlinlessons.rest
+package eu.vmpay.kotlinlessons.data
 
 import com.google.gson.Gson
 import java.net.URL

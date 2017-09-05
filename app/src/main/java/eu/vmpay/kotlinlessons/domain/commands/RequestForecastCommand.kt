@@ -1,8 +1,8 @@
 package eu.vmpay.kotlinlessons.domain.commands
 
+import eu.vmpay.kotlinlessons.data.ForecastRequest
 import eu.vmpay.kotlinlessons.domain.mapper.ForecastDataMapper
 import eu.vmpay.kotlinlessons.domain.model.ForecastList
-import eu.vmpay.kotlinlessons.rest.ForecastRequest
 
 /**
  * Created by andrew on 30.08.17.

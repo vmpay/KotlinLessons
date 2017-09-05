@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import eu.vmpay.kotlinlessons.R
-import eu.vmpay.kotlinlessons.rest.Request
+import eu.vmpay.kotlinlessons.data.Request
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
