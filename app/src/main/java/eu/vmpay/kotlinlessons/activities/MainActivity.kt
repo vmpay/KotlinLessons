@@ -11,7 +11,6 @@ import eu.vmpay.kotlinlessons.R
 import eu.vmpay.kotlinlessons.rest.Request
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.longToast
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {

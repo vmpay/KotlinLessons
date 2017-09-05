@@ -12,11 +12,14 @@ import android.widget.TextView
 import eu.vmpay.kotlinlessons.R
 import eu.vmpay.kotlinlessons.adapters.ForecastListAdapter
 import eu.vmpay.kotlinlessons.domain.commands.RequestForecastCommand
+import eu.vmpay.kotlinlessons.domain.model.Forecast
 import eu.vmpay.kotlinlessons.stepik.Lesson1
 import eu.vmpay.kotlinlessons.stepik.Lesson2
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
+
 
 /**
  * A placeholder fragment containing a simple view.
@@ -57,7 +60,12 @@ class MainActivityFragment : Fragment() {
         doAsync {
             val result = RequestForecastCommand("94043").execute()
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result)
+                forecastList.adapter = ForecastListAdapter(result,
+                        object : ForecastListAdapter.OnItemClickListener {
+                            override fun invoke(forecast: Forecast) {
+                                activity.toast(forecast.date)
+                            }
+                        })
             }
         }
         return rootView
