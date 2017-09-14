@@ -1,4 +1,4 @@
-package eu.vmpay.kotlinlessons.data
+package eu.vmpay.kotlinlessons.data.server
 
 /**
  * Created by andrew on 28.08.17.

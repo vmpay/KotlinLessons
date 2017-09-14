@@ -1,6 +1,5 @@
-package eu.vmpay.kotlinlessons.domain.mapper
+package eu.vmpay.kotlinlessons.data.server
 
-import eu.vmpay.kotlinlessons.data.ForecastResponse
 import eu.vmpay.kotlinlessons.domain.model.ForecastList
 import java.text.DateFormat
 import java.util.*
@@ -11,9 +10,9 @@ import eu.vmpay.kotlinlessons.domain.model.Forecast as ModelForecast
 /**
  * Created by andrew on 30.08.17.
  */
-class ForecastDataMapper {
-    fun convertFromDataModel(forecast: ForecastResponse.ForecastResult): ForecastList {
-        return ForecastList(forecast.city.name, forecast.city.country, convertForecastListToDomain(forecast.list))
+class ServerDataMapper {
+    fun convertToDomain(zipCode: Long, forecast: ForecastResponse.ForecastResult) = with(forecast) {
+        ForecastList(zipCode, city.name, city.country, convertForecastListToDomain(list))
     }
 
     private fun convertForecastListToDomain(list: List<ForecastResponse.Forecast>): List<ModelForecast> {
@@ -23,9 +22,9 @@ class ForecastDataMapper {
         }
     }
 
-    private fun convertForecastItemToDomain(forecast: ForecastResponse.Forecast): ModelForecast {
-        return ModelForecast(convertDate(forecast.dt), forecast.weather[0].description,
-                forecast.temp.max.toInt(), forecast.temp.min.toInt(), generateIconUrl(forecast.weather[0].icon))
+    private fun convertForecastItemToDomain(forecast: ForecastResponse.Forecast) = with(forecast) {
+        ModelForecast(dt, weather[0].description, temp.max.toInt(), temp.min.toInt(),
+                generateIconUrl(weather[0].icon))
     }
 
     private fun generateIconUrl(iconCode: String): String = "http://openweathermap.org/img/w/$iconCode.png"

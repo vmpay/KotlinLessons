@@ -1,4 +1,4 @@
-package eu.vmpay.kotlinlessons.activities.utils
+package eu.vmpay.kotlinlessons.extensions
 
 import android.content.Context
 import android.view.View

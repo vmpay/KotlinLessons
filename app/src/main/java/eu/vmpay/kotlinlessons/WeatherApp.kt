@@ -1,7 +1,7 @@
 package eu.vmpay.kotlinlessons
 
 import android.app.Application
-import eu.vmpay.kotlinlessons.activities.utils.DelegatesExt
+import eu.vmpay.kotlinlessons.extensions.DelegatesExt
 
 /**
  * Created by andrew on 05.09.17.

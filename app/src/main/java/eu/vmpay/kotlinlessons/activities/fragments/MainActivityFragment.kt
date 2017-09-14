@@ -57,9 +57,9 @@ class MainActivityFragment : Fragment() {
         forecastList.layoutManager = LinearLayoutManager(activity)
 //        forecastList.adapter = ForecastListAdapter(items)
         doAsync {
-            val result = RequestForecastCommand("94043").execute()
+            val result = RequestForecastCommand(94043).execute()
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result) { activity.toast(it.date) }
+                forecastList.adapter = ForecastListAdapter(result) { activity.toast(it.description) }
             }
         }
         return rootView

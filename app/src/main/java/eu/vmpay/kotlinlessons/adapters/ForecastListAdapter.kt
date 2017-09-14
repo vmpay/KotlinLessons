@@ -8,10 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import eu.vmpay.kotlinlessons.R
-import eu.vmpay.kotlinlessons.activities.utils.ctx
 import eu.vmpay.kotlinlessons.domain.model.Forecast
 import eu.vmpay.kotlinlessons.domain.model.ForecastList
+import eu.vmpay.kotlinlessons.extensions.ctx
 import org.jetbrains.anko.find
+import java.text.DateFormat
+import java.util.*
 
 /**
  * Created by andrew on 28.08.17.
@@ -47,12 +49,17 @@ class ForecastListAdapter(val weekForecast: ForecastList,
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
                 Picasso.with(itemView.ctx).load(iconUrl).into(iconView)
-                dateView.text = date
+                dateView.text = convertDate(date)
                 descriptionView.text = description
                 maxTemperatureView.text = "${high}º"
                 minTemperatureView.text = "${low}º"
                 itemView.setOnClickListener { itemClick(this) }
             }
+        }
+
+        private fun convertDate(date: Long): String {
+            val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
+            return df.format(date)
         }
     }
 

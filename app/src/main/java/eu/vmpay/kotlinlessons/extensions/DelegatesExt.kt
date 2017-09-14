@@ -1,4 +1,4 @@
-package eu.vmpay.kotlinlessons.activities.utils
+package eu.vmpay.kotlinlessons.extensions
 
 import kotlin.reflect.KProperty
 
