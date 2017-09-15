@@ -10,13 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import eu.vmpay.kotlinlessons.R
+import eu.vmpay.kotlinlessons.activities.DetailActivity
 import eu.vmpay.kotlinlessons.adapters.ForecastListAdapter
 import eu.vmpay.kotlinlessons.domain.commands.RequestForecastCommand
 import eu.vmpay.kotlinlessons.stepik.Lesson1
 import eu.vmpay.kotlinlessons.stepik.Lesson2
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 
 
@@ -56,10 +57,17 @@ class MainActivityFragment : Fragment() {
         val forecastList: RecyclerView = rootView.find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(activity)
 //        forecastList.adapter = ForecastListAdapter(items)
+
         doAsync {
-            val result = RequestForecastCommand(94043).execute()
+            val result = RequestForecastCommand(94063).execute()
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result) { activity.toast(it.description) }
+                val adapter = ForecastListAdapter(result)
+                {
+                    activity.startActivity<DetailActivity>(DetailActivity.ID to it.id,
+                            DetailActivity.CITY_NAME to result.city)
+                }
+                forecastList.adapter = adapter
+                activity.title = "${result.city} (${result.country})"
             }
         }
         return rootView

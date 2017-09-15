@@ -11,9 +11,8 @@ import eu.vmpay.kotlinlessons.R
 import eu.vmpay.kotlinlessons.domain.model.Forecast
 import eu.vmpay.kotlinlessons.domain.model.ForecastList
 import eu.vmpay.kotlinlessons.extensions.ctx
+import eu.vmpay.kotlinlessons.extensions.toDateString
 import org.jetbrains.anko.find
-import java.text.DateFormat
-import java.util.*
 
 /**
  * Created by andrew on 28.08.17.
@@ -49,17 +48,12 @@ class ForecastListAdapter(val weekForecast: ForecastList,
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
                 Picasso.with(itemView.ctx).load(iconUrl).into(iconView)
-                dateView.text = convertDate(date)
+                dateView.text = date.toDateString()
                 descriptionView.text = description
                 maxTemperatureView.text = "${high}º"
                 minTemperatureView.text = "${low}º"
                 itemView.setOnClickListener { itemClick(this) }
             }
-        }
-
-        private fun convertDate(date: Long): String {
-            val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
-            return df.format(date)
         }
     }
 

@@ -2,10 +2,7 @@ package eu.vmpay.kotlinlessons.data.db
 
 import eu.vmpay.kotlinlessons.domain.datasource.ForecastDataSource
 import eu.vmpay.kotlinlessons.domain.model.ForecastList
-import eu.vmpay.kotlinlessons.extensions.clear
-import eu.vmpay.kotlinlessons.extensions.parseList
-import eu.vmpay.kotlinlessons.extensions.parseOpt
-import eu.vmpay.kotlinlessons.extensions.toVarargArray
+import eu.vmpay.kotlinlessons.extensions.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
@@ -27,6 +24,13 @@ class ForecastDb(private val forecastDbHelper: ForecastDbHelper = ForecastDbHelp
                 .parseOpt { CityForecast(HashMap(it), dailyForecast) }
 
         if (city != null) dataMapper.convertToDomain(city) else null
+    }
+
+    override fun requestDayForecast(id: Long) = forecastDbHelper.use {
+        val forecast = select(DayForecastTable.NAME).byId(id).
+                parseOpt { DayForecast(HashMap(it)) }
+
+        if (forecast != null) dataMapper.convertDayToDomain(forecast) else null
     }
 
     fun saveForecast(forecast: ForecastList) = forecastDbHelper.use {
